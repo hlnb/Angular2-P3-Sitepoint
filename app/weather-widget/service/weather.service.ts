@@ -10,7 +10,7 @@ export class WeatherService{
                 console.log("Position: ", pos.coords.latitude,  ":" ,pos.coords.longitude); //TODO REMOVE
                 return[pos.coords.latitude, pos.coords.longitude]
             },
-        error => console.error("Unable to get the postion -", err))
+        error => console.error("Unable to get the postion -", error))
         }else{
             console.error{"Geolocation is not available"};
             return [0,0]

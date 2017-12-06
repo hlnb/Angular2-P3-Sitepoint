@@ -17,7 +17,7 @@ var WeatherService = (function () {
             navigator.geolocation.getCurrentPosition(function (pos) {
                 console.log("Position: ", pos.coords.latitude, ":", pos.coords.longitude); //TODO REMOVE
                 return [pos.coords.latitude, pos.coords.longitude];
-            }, function (error) { return console.error("Unable to get the postion -", err); });
+            }, function (error) { return console.error("Unable to get the postion -", error); });
         }
         else {
             console.error;
