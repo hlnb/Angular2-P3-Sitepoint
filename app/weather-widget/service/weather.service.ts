@@ -11,16 +11,18 @@ import { FORECAST_KEY, FORECAST_ROOT} from '../constants/constants';
 export class WeatherService{
     
     constructor(private jsonp: Jsonp){}
-    getCurrentLocation(): [number,number]{
+    getCurrentLocation(): Observable<any>{
         if(navigator.geolocation){
+            return Observable.create(observer => {
             navigator.geolocation.getCurrentPosition(pos => {
-                console.log("Position: ", pos.coords.latitude,  "|" ,pos.coords.longitude); //TODO REMOVE
-                return[pos.coords.latitude, pos.coords.longitude]
-            },
-        error => console.error("Unable to get the postion -", error));
+                observer.next(pos)
+            }),
+        err => {
+            return Observable.throw(err);
+        }
+        });
         }else{
-            console.error{"Geolocation is not available"};
-            return [0,0]
+            return Observable.throw("Geolocation is not available");
 
         }
     }
