@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var weather_service_1 = require('../service/weather.service');
 var weather_1 = require('../model/weather');
+var constants_1 = require('../constants/constants');
 var WeatherComponent = (function () {
     function WeatherComponent(service) {
         var _this = this;
@@ -19,7 +20,8 @@ var WeatherComponent = (function () {
         this.currentSpeedUnit = "kph";
         this.currentTempUnit = "fahrenheit";
         this.currentLocation = "";
-        this.icons = new Skycons({ "color": "#fff" });
+        this.icons = new Skycons();
+        this.dataReceived = false;
         this.service.getCurrentLocation()
             .subscribe(function (position) {
             _this.pos = position;
@@ -49,6 +51,7 @@ var WeatherComponent = (function () {
                 _this.weatherData.humidity = weather["currently"]["humidity"],
                 _this.weatherData.icon = weather["currently"]["icon"];
             console.log("weather: ", _this.weatherData);
+            _this.setIcon();
         }, function (err) { return console.error(err); });
     };
     WeatherComponent.prototype.getLocationName = function () {
@@ -78,6 +81,22 @@ var WeatherComponent = (function () {
         }
         else {
             this.currentSpeedUnit = 'kph';
+        }
+    };
+    WeatherComponent.prototype.setIcon = function () {
+        this.icons.add("icon", this.weatherData.icon);
+        this.icons.play();
+    };
+    WeatherComponent.prototype.setStyles = function () {
+        if (this.weatherData.icon) {
+            this.icons.color;
+            constants_1.WEATHER_COLOURS[this.weatherData.icon]['color'];
+            return constants_1.WEATHER_COLOURS[this.weatherData.icon];
+        }
+        else {
+            this.icons.color;
+            constants_1.WEATHER_COLOURS["default"]['color'];
+            return constants_1.WEATHER_COLOURS["default"];
         }
     };
     WeatherComponent = __decorate([

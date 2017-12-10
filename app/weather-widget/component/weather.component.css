@@ -7,13 +7,12 @@
 .card-footer {
     border: none;
     border-radius: 0;
-    background: #00bcd4;
-    color: #fff;
 }
 
 .card-header,
 .card-footer {
     padding: 1rem, 0.5rem;
+    background-color: transparent;
 }
 
 .card-block {
@@ -25,7 +24,45 @@
     text-align: center;
 }
 
+#indicator {
+    height: 165px;
+    position: relative;
+}
+
+#indicator i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    margin: -8% 0 0 -25%;
+}
+
+canvas {
+    max-width: 250px;
+    margin-bottom: 1rem;
+}
+
+.card-block,
+.card-footer {
+    text-align: center;
+}
+
+.card-footer {
+    padding-bottom: .5rem;
+}
+
+#detail-row {
+    font-size: .8rem;
+}
+
+#helper-row {
+    padding-top: .5rem;
+}
+
 p {
     margin: .2rem;
+}
+
+p:not(.unit-label) {
     text-transform: uppercase;
 }

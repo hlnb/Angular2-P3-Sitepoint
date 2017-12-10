@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../service/weather.service';
 
 import { Weather } from '../model/weather'
+import { WEATHER_COLOURS } from '../constants/constants';
 
-
+declare var Skycons: any;
 @Component({
     moduleId: module.id,
     selector: 'weather-widget',
@@ -19,7 +20,8 @@ export class WeatherComponent implements OnInit {
     currentSpeedUnit = "kph";
     currentTempUnit = "fahrenheit";
     currentLocation = "";
-    icons =  new Skycons({"color":"#fff"});
+    icons =  new Skycons();
+    dataReceived = false;
 
     constructor(private service: WeatherService) {
         this.service.getCurrentLocation()
@@ -52,6 +54,7 @@ export class WeatherComponent implements OnInit {
                     this.weatherData.humidity = weather["currently"]["humidity"],
                     this.weatherData.icon = weather["currently"]["icon"]
                 console.log("weather: ", this.weatherData)
+                this.setIcon();
             },
             err => console.error(err));
     }
@@ -86,6 +89,21 @@ export class WeatherComponent implements OnInit {
             this.currentSpeedUnit = 'mph';
         }else{
             this.currentSpeedUnit = 'kph';
+        }
+    }
+
+    setIcon(){
+        this.icons.add("icon", this.weatherData.icon);
+        this.icons.play();
+    }
+
+    setStyles():Object{
+        if(this.weatherData.icon){
+            this.icons.color: WEATHER_COLOURS[this.weatherData.icon]['color'];
+            return WEATHER_COLOURS[this.weatherData.icon];
+        }else{
+            this.icons.color: WEATHER_COLOURS["default"]['color'];
+            return WEATHER_COLOURS["default"];
         }
     }
 
