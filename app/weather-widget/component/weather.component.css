@@ -1,5 +1,7 @@
 .card {
     box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.24);
+    transition: background-color .5s ease;
+    cursor: pointer;
 }
 
 .card,
@@ -16,12 +18,16 @@
 }
 
 .card-block {
-    padding: 3rem;
+    padding: 1.5rem 0;
 }
 
 .card-block,
 .card-footer {
     text-align: center;
+}
+
+.card-footer {
+    padding-bottom: .5rem;
 }
 
 #indicator {
@@ -40,15 +46,6 @@
 canvas {
     max-width: 250px;
     margin-bottom: 1rem;
-}
-
-.card-block,
-.card-footer {
-    text-align: center;
-}
-
-.card-footer {
-    padding-bottom: .5rem;
 }
 
 #detail-row {

@@ -55,6 +55,7 @@ export class WeatherComponent implements OnInit {
                     this.weatherData.icon = weather["currently"]["icon"]
                 console.log("weather: ", this.weatherData)
                 this.setIcon();
+                this.dataReceived = true;
             },
             err => console.error(err));
     }
